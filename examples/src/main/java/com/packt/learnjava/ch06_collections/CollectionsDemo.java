@@ -12,6 +12,7 @@ import java.util.Set;
 
 public class CollectionsDemo {
     public static void main(String... args) {
+/*
         initialize1();
         initialize2();
         initialize3();
@@ -25,17 +26,8 @@ public class CollectionsDemo {
         sort2();
         map();
         unmodifiable();
-    }
-
-    private static void unmodifiable(){
-        System.out.println("\nmodifiable():");
-
-        Person1 p1 = new Person1(45, "Bill");
-        List<Person1> list = List.of(p1);
-        //list.add(new Person1(22, "Bob")); //UnsupportedOperationException
-        System.out.println(list);  //[Person{age=45, name=Bill}]
-        p1.setName("Kelly");       //[Person{age=45, name=Kelly}]
-        System.out.println(list);
+*/
+        sequenced();
     }
 
     private static void initialize1(){
@@ -299,6 +291,74 @@ public class CollectionsDemo {
 
     }
 
+    private static void map(){
+        System.out.println("\nmap():");
+
+        Map<Integer, String> map = Map.of(1, "s1", 2, "s2", 3, "s3");
+
+        for(Integer key: map.keySet()){
+            System.out.print(key + ", " + map.get(key) + ", ");  //prints: 3, s3, 2, s2, 1, s1,
+        }
+
+        System.out.println();
+
+        for(Map.Entry e: map.entrySet()){
+            System.out.print(e.getKey() + ", " + e.getValue() + ", "); //prints: 2, s2, 3, s3, 1, s1,
+        }
+    }
+
+    private static void unmodifiable(){
+        System.out.println("\nmodifiable():");
+
+        Person1 p1 = new Person1(45, "Bill");
+        List<Person1> list = List.of(p1);
+        //list.add(new Person1(22, "Bob")); //UnsupportedOperationException
+        System.out.println(list);  //[Person{age=45, name=Bill}]
+        p1.setName("Kelly");       //[Person{age=45, name=Kelly}]
+        System.out.println(list);
+    }
+
+    private static void sequenced(){
+        System.out.println("\nsequenced():");
+
+        List<Person> list = new ArrayList<>();
+        list.add(new Person(42, "Kelly"));
+        list.add(new Person(34, "Jill"));
+
+        System.out.println();
+        list.addFirst(new Person(45, "Bill"));
+        System.out.println("Added first:");
+        list.forEach(System.out::println);
+
+        System.out.println();
+        list.addLast(new Person(25, "Courtney"));
+        System.out.println("Added last:");
+        list.forEach(System.out::println);
+
+        System.out.println();
+        System.out.println("Getting first:");
+        System.out.println(list.getFirst());  //[Person{age=45, name=Bill}]
+
+        System.out.println();
+        System.out.println("Getting last:");
+        System.out.println(list.getLast());   //[Person{age=25, name=Courtney}]
+
+        System.out.println();
+        List<Person> listReversed = list.reversed();
+        System.out.println("List reversed:");
+        listReversed.forEach(System.out::println);
+
+        System.out.println();
+        listReversed.removeFirst();
+        System.out.println("Removed first:");
+        listReversed.forEach(System.out::println);
+
+        System.out.println();
+        listReversed.removeLast();
+        System.out.println("Removed last:");
+        listReversed.forEach(System.out::println);
+   }
+
     private static class Person implements Comparable<Person> {
         private int age;
         private String name;
@@ -359,25 +419,4 @@ public class CollectionsDemo {
                     ", name=" + name + "}";
         }
     }
-
-    private static void map(){
-        System.out.println("\nmap():");
-
-        Map<Integer, String> map = Map.of(1, "s1", 2, "s2", 3, "s3");
-
-        for(Integer key: map.keySet()){
-            System.out.print(key + ", " + map.get(key) + ", ");  //prints: 3, s3, 2, s2, 1, s1,
-        }
-
-        System.out.println();
-
-        for(Map.Entry e: map.entrySet()){
-            System.out.print(e.getKey() + ", " + e.getValue() + ", "); //prints: 2, s2, 3, s3, 1, s1,
-        }
-
-    }
-
-
-
-
 }
