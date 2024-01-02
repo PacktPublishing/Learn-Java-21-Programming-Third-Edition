@@ -12,7 +12,6 @@ import java.util.Set;
 
 public class CollectionsDemo {
     public static void main(String... args) {
-/*
         initialize1();
         initialize2();
         initialize3();
@@ -26,7 +25,6 @@ public class CollectionsDemo {
         sort2();
         map();
         unmodifiable();
-*/
         sequenced();
     }
 
@@ -337,11 +335,11 @@ public class CollectionsDemo {
 
         System.out.println();
         System.out.println("Getting first:");
-        System.out.println(list.getFirst());  //[Person{age=45, name=Bill}]
+        System.out.println(list.getFirst());  //Person{age=45, name=Bill}
 
         System.out.println();
         System.out.println("Getting last:");
-        System.out.println(list.getLast());   //[Person{age=25, name=Courtney}]
+        System.out.println(list.getLast());   //Person{age=25, name=Courtney}
 
         System.out.println();
         List<Person> listReversed = list.reversed();
