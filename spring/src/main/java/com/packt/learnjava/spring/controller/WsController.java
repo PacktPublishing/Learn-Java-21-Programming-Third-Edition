@@ -2,14 +2,14 @@ package com.packt.learnjava.spring.controller;
 
 import com.packt.learnjava.spring.model.Person;
 import com.packt.learnjava.spring.service.PersonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,6 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/ws")
 public class WsController {
+    private static Logger logger = LoggerFactory.getLogger(WsController.class);
     @Autowired
     PersonService personService;
 
@@ -125,13 +126,17 @@ public class WsController {
                 .toEntity(String.class);
     }
 
-    @GetMapping("/post/{message}")
-    private ResponseEntity<String> post(@PathVariable String message) {
-        return restClient2
+    @GetMapping("/getresp/{message}")
+    private ResponseEntity<String> getresp(@PathVariable String message) {
+        ResponseEntity<String> resp  = restClient2
                 .get()
                 .uri("/some/path/nick/Two/" + message)
                 .retrieve()
                 .toEntity(String.class);
+        logger.info("Response: " + resp);
+        logger.info("Response status: " + resp.getStatusCode());
+        logger.info("Response body: " + resp.getBody());
+        return resp;
     }
 
 }
