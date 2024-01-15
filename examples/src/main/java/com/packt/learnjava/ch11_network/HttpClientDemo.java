@@ -21,8 +21,8 @@ import java.util.function.Function;
 
 public class HttpClientDemo {
     public static void main(String[] args) {
-        /* Run Server class before uncommenting and running
-         * any of the following examples
+        /* Run Server class in the server/src/main/java/com/packt/learnjava/network/http folder
+           before uncommenting and running any of the following examples
          */
         get();
         //post();

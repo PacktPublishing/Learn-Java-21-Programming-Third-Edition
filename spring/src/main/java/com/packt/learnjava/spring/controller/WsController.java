@@ -3,16 +3,20 @@ package com.packt.learnjava.spring.controller;
 import com.packt.learnjava.spring.model.Person;
 import com.packt.learnjava.spring.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,4 +105,33 @@ public class WsController {
             return ResponseEntity.internalServerError().body("");
         }
     }
+
+    //The following code is used in the Chapter 16. Java Microservices
+    @Autowired
+    @Qualifier("restClient1")
+    RestClient restClient1;
+
+    @Autowired
+    @Qualifier("restClient2")
+    RestClient restClient2;
+
+    @PostMapping("/send/{message}")
+    private ResponseEntity<String> send(@PathVariable String message) {
+        return restClient1
+                .post()
+                .uri("/something")
+                .body(message)
+                .retrieve()
+                .toEntity(String.class);
+    }
+
+    @GetMapping("/post/{message}")
+    private ResponseEntity<String> post(@PathVariable String message) {
+        return restClient2
+                .get()
+                .uri("/some/path/nick/Two/" + message)
+                .retrieve()
+                .toEntity(String.class);
+    }
+
 }
