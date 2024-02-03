@@ -130,7 +130,7 @@ public class WsController {
     private ResponseEntity<String> getresp(@PathVariable String message) {
         ResponseEntity<String> resp  = restClient2
                 .get()
-                .uri("/some/path/nick/Two/" + message)
+                .uri("/some/path/Nick/Two/" + message)
                 .retrieve()
                 .toEntity(String.class);
         logger.info("Response: " + resp);
