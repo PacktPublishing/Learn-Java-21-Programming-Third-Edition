@@ -20,7 +20,6 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 
 @Controller
-@RequestMapping("/ui")
 public class UiController{
     private static Logger logger = LoggerFactory.getLogger(UiController.class);
     private static String INTERNAL_ERROR = "Unexpected condition. Please, contact the application administrator or try again later";
@@ -31,7 +30,7 @@ public class UiController{
     @Autowired
     PersonService personService;
 
-    @GetMapping(value = {"", "/"})
+    @GetMapping(value = {"/ui"})
     private String home(Model model) {
         addActuatorKey(model, "health");
         addActuatorKey(model, "info");
@@ -50,7 +49,7 @@ public class UiController{
         }
     }
 
-    @GetMapping("/list")
+    @GetMapping("/ui/list")
     private String list(Model model){
         try {
             model.addAttribute("persons", personService.getAllPersons());
@@ -61,7 +60,7 @@ public class UiController{
         return "list";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/ui/delete/{id}")
     private String delete(Model model, @PathVariable int id){
         try {
             Person existingPerson = personService.getPersonById(id);
@@ -77,14 +76,14 @@ public class UiController{
         return list(model);
     }
 
-    @GetMapping("/new")
+    @GetMapping("/ui/new")
     private String newPerson(Model model){
         model.addAttribute("person", new Person());
         return "person";
     }
 
-    @GetMapping("/edit/{id}")
-    private String update(Model model, @PathVariable int id){
+    @GetMapping("/ui/edit/{id}")
+    private String edit(Model model, @PathVariable int id){
         try {
             Person existingPerson = personService.getPersonById(id);
             if(existingPerson.getId() > 0){
@@ -98,7 +97,7 @@ public class UiController{
         return "person";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/ui/save")
     private String save(Model model, @ModelAttribute Person person){
         try {
             if(person.getId() == 0){

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClient;
 
@@ -22,13 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ws")
 public class WsController {
     private static Logger logger = LoggerFactory.getLogger(WsController.class);
     @Autowired
     PersonService personService;
 
-    @GetMapping("/list")
+    @GetMapping("/ws/list")
     private ResponseEntity<List<Person>> list() {
         try {
             return ResponseEntity.ok().body(personService.getAllPersons());
@@ -37,7 +35,7 @@ public class WsController {
         }
     }
 
-    @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/ws/new", consumes = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<String> newPerson(@RequestBody Person person){
         String error = person.validateForInsert();
         if(!"".equals(error)){
@@ -51,7 +49,7 @@ public class WsController {
         }
     }
 
-    @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/ws/update", consumes = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<String> update(@RequestBody Person person){
         try {
             if(person.getId() == 0){
@@ -70,7 +68,7 @@ public class WsController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/ws/delete/{id}")
     private ResponseEntity<String> delete(@PathVariable int id){
         try {
             if(id <= 0){
@@ -89,18 +87,14 @@ public class WsController {
         }
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/ws/get/{id}")
     private ResponseEntity<String> get(@PathVariable int id){
         try {
             if(id <= 0){
                 return ResponseEntity.badRequest().body("The id value has to be positive integer");
             } else {
-                Person person = personService.getPersonByIdCB(id);
-                if(person.getId() > 0){
-                    return ResponseEntity.ok().body(person.toString());
-                } else {
-                    return ResponseEntity.badRequest().body("Person record with id=" + id + " not found.");
-                }
+                Person person = personService.getPersonById(id);
+                return ResponseEntity.ok().body(person.toString());
             }
         } catch (Exception ex){
             return ResponseEntity.internalServerError().body("");
@@ -116,7 +110,7 @@ public class WsController {
     @Qualifier("restClient2")
     RestClient restClient2;
 
-    @PostMapping("/send/{message}")
+    @PostMapping("/ws/send/{message}")
     private ResponseEntity<String> send(@PathVariable String message) {
         return restClient1
                 .post()
@@ -126,7 +120,7 @@ public class WsController {
                 .toEntity(String.class);
     }
 
-    @GetMapping("/getresp/{message}")
+    @GetMapping("/ws/getresp/{message}")
     private ResponseEntity<String> getresp(@PathVariable String message) {
         ResponseEntity<String> resp  = restClient2
                 .get()
@@ -138,5 +132,4 @@ public class WsController {
         logger.info("Response body: " + resp.getBody());
         return resp;
     }
-
 }
