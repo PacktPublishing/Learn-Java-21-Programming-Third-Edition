@@ -11,13 +11,9 @@ public class Crud {
     public static void main(String... args) {
         //Uncomment the following code only after
         // the database learnjava and table person are created
-        //To create table person, first connect to the database
-        // using the following psql command: \c learnjava
-/*
-        execute();
-        executeQuery();
-        executeUpdates();
-*/
+//        execute();
+//        executeQuery();
+//        executeUpdates();
     }
 
     private static void execute(){
@@ -241,7 +237,7 @@ public class Crud {
         String URL = "jdbc:postgresql://localhost/learnjava";
         Properties prop = new Properties();
         prop.put("user", "student");
-        // prop.put( "password", "secretPass123" );
+        prop.put("password", "study");
         try {
             return DriverManager.getConnection(URL, prop);
         } catch (SQLException ex) {

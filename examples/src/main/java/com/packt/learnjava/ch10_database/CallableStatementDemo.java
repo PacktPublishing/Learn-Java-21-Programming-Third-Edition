@@ -11,7 +11,6 @@ public class CallableStatementDemo {
     public static void main(String... args) {
         //Uncomment the following code only after
         // the database learnjava and table person are created
-
 /*
         String result = replace("That is original text",
                 "original text", "the result");
@@ -40,7 +39,7 @@ public class CallableStatementDemo {
         String URL = "jdbc:postgresql://localhost/learnjava";
         Properties prop = new Properties();
         prop.put("user", "student");
-        // prop.put( "password", "secretPass123" );
+        prop.put("password", "study");
         try {
             return DriverManager.getConnection(URL, prop);
         } catch (SQLException ex) {

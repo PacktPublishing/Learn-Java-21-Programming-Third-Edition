@@ -71,7 +71,7 @@ public class UseDatabaseJar {
         String URL = "jdbc:postgresql://localhost/learnjava";
         Properties prop = new Properties();
         prop.put("user", "student");
-        // prop.put( "password", "secretPass123" );
+        prop.put("password", "study");
         try {
             return DriverManager.getConnection(URL, prop);
         } catch (SQLException ex) {
