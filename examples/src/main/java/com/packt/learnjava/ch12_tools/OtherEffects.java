@@ -1,4 +1,4 @@
-package com.packt.learnjava.ch12_gui;
+package com.packt.learnjava.ch12_tools;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -31,7 +31,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 

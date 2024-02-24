@@ -1,4 +1,4 @@
-package com.packt.learnjava.ch12_gui;
+package com.packt.learnjava.ch12_tools;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;

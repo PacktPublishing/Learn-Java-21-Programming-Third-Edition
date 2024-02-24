@@ -1,15 +1,9 @@
-package com.packt.learnjava.ch12_gui;
+package com.packt.learnjava.ch12_tools;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-
-import java.net.URL;
 
 public class HelloWorldController {
     @FXML

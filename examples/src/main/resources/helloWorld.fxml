@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Text?>
 
-<Scene fx:controller="com.packt.learnjava.ch12_gui.HelloWorldController"
+<Scene fx:controller="com.packt.learnjava.ch12_tools.HelloWorldController"
        xmlns:fx="http://javafx.com/fxml"
        width="350" height="200">
     <GridPane alignment="center" hgap="15" vgap="5">
