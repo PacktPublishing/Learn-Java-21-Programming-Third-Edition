@@ -2,7 +2,7 @@ package com.packt.learnjava.ch12_tools;
 /**
  * This is class that shows snippets usage
  * Use the following command to generate API docs from the examples directory:
- * javadoc -d ~/snippets src/main/java/com/packt/learnjava/ch12_tools/CodeSnippetsDemo.java
+ * javadoc -d ~/apidoc src/main/java/com/packt/learnjava/ch12_tools/CodeSnippetsDemo.java
  */
 public class CodeSnippetsDemo {
     /**
