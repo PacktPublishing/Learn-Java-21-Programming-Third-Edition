@@ -10,6 +10,7 @@ public class PrimitiveTypes {
         minMax();
         casting();
         literals();
+        var();
         newNumberFormat();
     }
 
@@ -97,12 +98,12 @@ public class PrimitiveTypes {
         l = 55_763_948L;
         System.out.println(l);  //prints: 55763948
 
-        System.out.println("\nEscqpe sequences:");
+        System.out.println("\nEscape sequences:");
         System.out.println("\"");   //prints: "
         System.out.println('\'');   //prints: '
         System.out.println('\\');   //prints: \
 
-        System.out.println("The back\bspace");     //The backspace
+        System.out.println("The back\bspace");     //The bacspace
         System.out.println("The horizontal\ttab"); //The horizontal	tab
         System.out.println("The line\nfeed");      //The line
                                                    //feed
@@ -111,7 +112,11 @@ public class PrimitiveTypes {
     }
 
     private static void var(){
+        System.out.println("\nThe var:");
         var x = 1;
+        var y = 42;
+        var z = x + y;
+        System.out.println(z);  //prints: 43
     }
 
     private static void newNumberFormat(){
